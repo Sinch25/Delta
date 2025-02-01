@@ -206,12 +206,6 @@
         <button onclick="closePopup()">Close</button>
     </div><br>
 
-    <div>
-        <button>
-            <a href="index.html">Back To Home</a></button>
-        <button>
-            <a href="useroptions.html">Back To Mode of Action</a></button>
-    </div><br>
 
     <script>
         let orderHistory = [];
@@ -290,7 +284,7 @@
 
             if (!hasError) {
                 orderHistory.push({ tabletName, quantity, address, expiryDate });
-                showPopup(`Address saved successfully! < br > Tablet: ${tabletName} < br > Quantity: ${quantity} < br > Delivery Address: ${address} < br > Expiry Date: ${expiryDate}`);
+                showPopup(`Address saved successfully!<br>Tablet: ${tabletName}<br>Quantity: ${quantity}<br>Delivery Address: ${address}<br>Expiry Date: ${expiryDate}`);
                 document.getElementById('placeOrderButton').style.display = 'block';
             }
         }
@@ -354,7 +348,7 @@
                 paymentMessage = 'Cash on Delivery selected.';
             }
 
-            showPopup(`Order placed successfully! < br > ${paymentMessage}`);
+            showPopup(`Order placed successfully!<br>${paymentMessage}`);
 
             // Show thank you popup after order is placed
             setTimeout(() => {
@@ -377,6 +371,7 @@
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
         }
+
 
     </script>
 </body>
