@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Mediplus</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- icofont CSS -->
+    <link rel="stylesheet" href="css/icofont.css">
+    <!-- Slicknav -->
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Medipro CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <title>Medical Waste Disposal - Multi-Speciality Hospital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #1a76d1;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        header h1 {
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1a76d1;
+            font-size: 2em;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Types of Medical Waste */
+        .waste-type-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .waste-card {
+            background-color: #ffffff;
+            width: calc(33% - 20px);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 255, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateX(100px);
+            /* Initial off-screen position */
+            animation: slideInFromRight 1s ease-out forwards;
+            /* Apply the sliding animation */
+        }
+
+        .waste-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 255, 0.2);
+        }
+
+        .waste-card h3 {
+            font-size: 1.5em;
+            color: #1a76d1;
+        }
+
+        .waste-card p {
+            font-size: 1em;
+            color: #333;
+        }
+
+        /* Modal for Detailed Waste Disposal Info */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.8);
+            /* Initially smaller */
+            animation: fadeInModal 0.5s ease-out forwards;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h4 {
+            margin-top: 0;
+            color: #1a76d1;
+        }
+
+        .modal-content p {
+            color: #1a76d1;
+            font-size: 1.1em;
+            line-height: 1.6em;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            color: #003366;
+        }
+
+        .request-form {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        .request-form h3 {
+            font-size: 1.8em;
+            color: #1a76d1;
+        }
+
+        .request-form input,
+        .request-form select,
+        .request-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .request-form button {
+            background-color: #1a76d1;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .request-form button:hover {
+            background-color: #1a76d1;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInCard {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInModal {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Guidelines Section */
+        .disposal-guidelines {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            /* Initially hidden */
+            transform: translateY(50px);
+            /* Start from below */
+            animation: slideUp 1s ease-out forwards;
+            /* Animate sliding up */
+        }
+
+        .disposal-guidelines h3 {
+            text-align: center;
+            color: #1a76d1;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .disposal-guideline {
+            margin-bottom: 20px;
+            opacity: 0;
+            /* Initially hidden */
+            transform: translateX(-100px);
+            /* Start from the left */
+            animation: slideInFromLeft 0.6s ease-out forwards;
+            /* Animate sliding in from left */
+        }
+
+        .disposal-guideline h4 {
+            color: #1a76d1;
+            font-size: 1.4em;
+        }
+
+        .disposal-guideline p {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6em;
+        }
+
+        /* Slide-in animation for each guideline */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .back-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a76d1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Medical Waste Disposal Management</h1>
+        <p>Ensuring Safe and Environmentally Responsible Waste Disposal in Multi-Speciality Hospitals</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Types of Medical Waste</h2>
+        <div class="waste-type-container">
+            <div class="waste-card" onclick="openModal('Infectious Waste')">
+                <h3>Infectious Waste</h3>
+                <p>Waste contaminated with blood, bodily fluids, or other infectious materials.</p>
+            </div>
+            <div class="waste-card" onclick="openModal('Sharps Waste')">
+                <h3>Sharps Waste</h3>
+                <p>Needles, syringes, and other sharp objects.</p>
+            </div>
+            <div class="waste-card" onclick="openModal('Pharmaceutical Waste')">
+                <h3>Pharmaceutical Waste</h3>
+                <p>Expired or unused medications and medical supplies.</p>
+            </div>
+            <div class="waste-card" onclick="openModal('Chemical Waste')">
+                <h3>Chemical Waste</h3>
+                <p>Waste from disinfectants, cleaning agents, and lab chemicals.</p>
+            </div>
+            <div class="waste-card" onclick="openModal('Anatomical Waste')">
+                <h3>Anatomical Waste</h3>
+                <p>Human tissues, organs, and body parts from surgeries.</p>
+            </div>
+            <div class="waste-card" onclick="openModal('Radioactive Waste')">
+                <h3>Radioactive Waste</h3>
+                <p>Materials containing radioactive substances.</p>
+            </div>
+        </div>
+
+        <!-- Disposal Guidelines Section -->
+        <div class="disposal-guidelines">
+            <h3>Disposal Guidelines</h3>
+            <div class="disposal-guideline">
+                <h4>Infectious Waste</h4>
+                <p>Infectious waste should be placed in red biohazard bags and disinfected or sterilized before
+                    disposal. Ensure safe handling to avoid contamination.</p>
+            </div>
+            <div class="disposal-guideline">
+                <h4>Sharps Waste</h4>
+                <p>Sharps waste like needles and syringes should be disposed of in puncture-proof containers to prevent
+                    injury and contamination.</p>
+            </div>
+            <div class="disposal-guideline">
+                <h4>Pharmaceutical Waste</h4>
+                <p>Unused or expired medications should be disposed of through authorized pharmaceutical waste systems
+                    to prevent misuse.</p>
+            </div>
+            <div class="disposal-guideline">
+                <h4>Chemical Waste</h4>
+                <p>Chemical waste should be handled carefully and disposed of at certified hazardous waste facilities to
+                    prevent environmental damage.</p>
+            </div>
+            <div class="disposal-guideline">
+                <h4>Anatomical Waste</h4>
+                <p>Anatomical waste requires incineration or special disposal methods, in accordance with health
+                    regulations.</p>
+            </div>
+            <div class="disposal-guideline">
+                <h4>Radioactive Waste</h4>
+                <p>Radioactive waste must be disposed of by certified agencies equipped to handle radioactive materials
+                    safely.</p>
+            </div>
+        </div>
+
+        <div class="request-form">
+            <h3>Request Medical Waste Disposal Service</h3>
+            <form action="#" method="POST">
+                <input type="text" name="clinic_name" placeholder="Clinic/Department Name" required>
+                <input type="text" name="contact_name" placeholder="Contact Person" required>
+                <input type="tel" name="contact_phone" placeholder="Contact Phone Number" required>
+                <select name="waste_type" required>
+                    <option value="Infectious Waste">Infectious Waste</option>
+                    <option value="Sharps Waste">Sharps Waste</option>
+                    <option value="Pharmaceutical Waste">Pharmaceutical Waste</option>
+                    <option value="Chemical Waste">Chemical Waste</option>
+                    <option value="Anatomical Waste">Anatomical Waste</option>
+                    <option value="Radioactive Waste">Radioactive Waste</option>
+                </select>
+                <textarea name="additional_info" placeholder="Additional Information (Optional)" rows="4"></textarea>
+                <button type="submit">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h4 id="modal-title">Waste Type</h4>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <button id="html" class="back-button">
+        <a href="index.html">Back To Home</a></button>
+    <button id="html" class="back-button">
+        <a href="useroptions.html">Back To Mode of Action</a></button>
+    <br><br>
+
+    <script>
+        function openModal(wasteType) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+
+            // Set content based on the clicked waste type
+            switch (wasteType) {
+                case 'Infectious Waste':
+                    modalTitle.innerText = 'Infectious Waste Disposal';
+                    modalDescription.innerText = 'Infectious waste includes materials that are contaminated with blood, bodily fluids, or other infectious substances. These should be disposed of in red biohazard bags and treated before disposal.';
+                    break;
+                case 'Sharps Waste':
+                    modalTitle.innerText = 'Sharps Waste Disposal';
+                    modalDescription.innerText = 'Sharps waste includes needles, syringes, scalpels, and other sharp objects. These should be placed in puncture-proof containers for proper disposal.';
+                    break;
+                case 'Pharmaceutical Waste':
+                    modalTitle.innerText = 'Pharmaceutical Waste Disposal';
+                    modalDescription.innerText = 'Expired or unused medications must be disposed of through authorized pharmaceutical waste management systems to prevent contamination and misuse.';
+                    break;
+                case 'Chemical Waste':
+                    modalTitle.innerText = 'Chemical Waste Disposal';
+                    modalDescription.innerText = 'Chemical waste includes substances such as disinfectants, cleaning agents, and lab chemicals. These must be carefully handled and disposed of at certified hazardous waste facilities.';
+                    break;
+                case 'Anatomical Waste':
+                    modalTitle.innerText = 'Anatomical Waste Disposal';
+                    modalDescription.innerText = 'Anatomical waste includes human tissues, organs, and body parts from surgeries or autopsies. These require incineration or specific disposal methods as per health regulations.';
+                    break;
+                case 'Radioactive Waste':
+                    modalTitle.innerText = 'Radioactive Waste Disposal';
+                    modalDescription.innerText = 'Radioactive waste should be handled with utmost care and disposed of by certified agencies equipped for managing radioactive materials.';
+                    break;
+            }
+
+            // Show the modal
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
