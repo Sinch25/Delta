@@ -42,233 +42,163 @@
 
     <!-- Medipro CSS -->
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
 <body>
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader">
-            <div class="loader-outter"></div>
-            <div class="loader-inner"></div>
+    <!DOCTYPE html>
+    <html lang="en">
 
-            <div class="indicator">
-                <svg width="16px" height="12px">
-                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                </svg>
-            </div>
-        </div>
-    </div>
-    <!-- End Preloader -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login & Signup Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
 
+                font-family: Arial, sans-serif;
+                margin: 0;
+            }
 
-    <!-- Header Area -->
-    <header class="header">
-        <!-- Topbar -->
-        <div class="topbar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-5 col-12">
-                        <!-- Contact -->
-                        <ul class="top-link">
-                            <li><a href="#">Empowering Healthcare, Eliminating Waste – Buy, Sell, and
-                                    Dispose Responsibly!</a></li>
-                        </ul>
-                        <!-- End Contact -->
-                    </div>
-                    <div class="col-lg-6 col-md-7 col-12">
-                        <!-- Top Contact -->
-                        <ul class="top-contact">
-                            <li><i class="fa fa-phone"></i>+880 1234 56789</li>
-                            <li><i class="fa fa-envelope"></i><a
-                                    href="mailto:support@yourmail.com">support@yourmail.com</a></li>
-                        </ul>
-                        <!-- End Top Contact -->
-                    </div>
+            .container {
+                background: white;
+                padding: 2rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                width: 350px;
+                text-align: center;
+            }
+
+            h2 {
+                margin-bottom: 1rem;
+                color: #333;
+            }
+
+            .input-group {
+                position: relative;
+                margin-bottom: 1.5rem;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 8px 10px 8px 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 1rem;
+            }
+
+            .input-group i {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #777;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 10px;
+                background: #36D1DC;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .btn:hover {
+                background: #5B86E5;
+            }
+
+            .error {
+                color: red;
+                font-size: 0.9rem;
+                margin-top: 10px;
+            }
+
+            .toggle {
+                margin-top: 10px;
+                color: #333;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h2 id="formTitle">Login</h2>
+            <form id="authForm">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <i class="fas fa-user"></i>
                 </div>
-            </div>
-        </div>
-        <!-- End Topbar -->
-        <!-- Header Inner -->
-        <div class="header-inner">
-            <div class="container">
-                <div class="inner">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12">
-                            <!-- Start Logo -->
-                            <div class="logo">
-                                <a href="index.html"><img src="img/logo.png" alt="#"></a>
-                            </div>
-                            <!-- End Logo -->
-                            <!-- Mobile Nav -->
-                            <div class="mobile-nav"></div>
-                            <!-- End Mobile Nav -->
-                        </div>
-                        <div class="col-lg-7 col-md-9 col-12">
-                            <!-- Main Menu -->
-                            <div class="main-menu">
-                                <nav class="navigation">
-                                    <ul class="nav menu">
-                                        <li class="active"><a href="#">Home <i class="icofont-rounded-down"></i></a>
-                                            <ul class="dropdown">
-                                                <li><a href="index.html">Home Page 1</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Blogs <i class="icofont-rounded-down"></i></a>
-                                            <ul class="dropdown">
-                                                <li><a href="blog-single.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">FAQs</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <!--/ End Main Menu -->
-                        </div>
-                    </div>
+                <div class="input-group" id="emailGroup" style="display: none;">
+                    <input type="email" id="email" placeholder="Email" required>
+                    <i class="fas fa-envelope"></i>
                 </div>
-            </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="btn" id="submitButton">Login</button>
+                <p class="error" id="errorMessage"></p>
+            </form>
+            <p class="toggle" id="toggleForm">Don't have an account? Sign up</p>
         </div>
-        <!--/ End Header Inner -->
-    </header>
-    <!-- End Header Area -->
+        <div style="text-align: center; margin-top: 20px;"></div>
+        </div>
+
+        <button type="submit" class="btn" id="submitButton">Back To Home</button>
 
 
-    <!-- Footer Area -->
-    <footer id="footer" class="footer ">
-        <!-- Footer Top -->
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="single-footer">
-                            <h2>Socials</h2>
-                            <p>Want to stay in the loop? Follow us for exclusive content and health insights. Click the
-                                links below to connect!.</p>
-                            <!-- Social -->
-                            <ul class="social">
-                                <li><a href="#"><i class="icofont-facebook"></i></a></li>
-                                <li><a href="#"><i class="icofont-google-plus"></i></a></li>
-                                <li><a href="#"><i class="icofont-twitter"></i></a></li>
-                                <li><a href="#"><i class="icofont-vimeo"></i></a></li>
-                                <li><a href="#"><i class="icofont-pinterest"></i></a></li>
-                            </ul>
-                            <!-- End Social -->
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="single-footer f-link">
-                            <h2>Quick Links</h2>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Blogs</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact
-                                                Us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="single-footer">
-                            <h2>Open Hours</h2>
-                            <ul class="time-sidual">
-                                <li class="day">Monday - Friday : <span>8.00-20.00</span></li>
-                                <li class="day">Saturday : <span> 9.00-18.00</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <!--/ End Footer Top -->
-        <!-- Copyright -->
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <div class="copyright-content">
-                            <p>© Copyright 2025 | All Rights Reserved by <a href="https://www.wpthemesgrid.com"
-                                    target="_blank">Mediplus.com</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ End Copyright -->
-    </footer>
-    <!--/ End Footer Area -->
+        <script>
+            const authForm = document.getElementById("authForm");
+            const formTitle = document.getElementById("formTitle");
+            const emailGroup = document.getElementById("emailGroup");
+            const submitButton = document.getElementById("submitButton");
+            const toggleForm = document.getElementById("toggleForm");
+            const errorMessage = document.getElementById("errorMessage");
+            let isLogin = true;
 
-    <!-- jquery Min JS -->
-    <script src="js/jquery.min.js"></script>
-    <!-- jquery Migrate JS -->
-    <script src="js/jquery-migrate-3.0.0.js"></script>
-    <!-- jquery Ui JS -->
-    <script src="js/jquery-ui.min.js"></script>
-    <!-- Easing JS -->
-    <script src="js/easing.js"></script>
-    <!-- Color JS -->
-    <script src="js/colors.js"></script>
-    <!-- Popper JS -->
-    <script src="js/popper.min.js"></script>
-    <!-- Bootstrap Datepicker JS -->
-    <script src="js/bootstrap-datepicker.js"></script>
-    <!-- Jquery Nav JS -->
-    <script src="js/jquery.nav.js"></script>
-    <!-- Slicknav JS -->
-    <script src="js/slicknav.min.js"></script>
-    <!-- ScrollUp JS -->
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <!-- Niceselect JS -->
-    <script src="js/niceselect.js"></script>
-    <!-- Tilt Jquery JS -->
-    <script src="js/tilt.jquery.min.js"></script>
-    <!-- Owl Carousel JS -->
-    <script src="js/owl-carousel.js"></script>
-    <!-- counterup JS -->
-    <script src="js/jquery.counterup.min.js"></script>
-    <!-- Steller JS -->
-    <script src="js/steller.js"></script>
-    <!-- Wow JS -->
-    <script src="js/wow.min.js"></script>
-    <!-- Magnific Popup JS -->
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <!-- Counter Up CDN JS -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-    <!-- Google Map API Key JS -->
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
-    <!-- Gmaps JS -->
-    <script src="js/gmaps.min.js"></script>
-    <!-- Map Active JS -->
-    <script src="js/map-active.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Main JS -->
-    <script src="js/main.js"></script>
-    <!-- Login JS -->
-    <script src="js/login.js"></script>
-    <!-- Register JS -->
-    <script src="js/register.js"></script>
+            toggleForm.addEventListener("click", () => {
+                isLogin = !isLogin;
+                formTitle.textContent = isLogin ? "Login" : "Sign Up";
+                emailGroup.style.display = isLogin ? "none" : "block";
+                submitButton.textContent = isLogin ? "Login" : "Sign Up";
+                toggleForm.textContent = isLogin ? "Don't have an account? Sign up" : "Already have an account? Login";
+                errorMessage.textContent = "";
+            });
+
+            authForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                const username = document.getElementById("username").value;
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                if (isLogin) {
+                    if (username === "admin" && password === "password123") {
+                        alert("Login successful!");
+                        window.location.href = "dashboard.html";
+                    } else {
+                        errorMessage.textContent = "Invalid username or password";
+                    }
+                } else {
+                    alert("Signup successful! Please login.");
+                    window.location.href = "login.html";
+                }
+            });
+        </script>
+    </body>
+
+    </html>
 </body>
 
 </html>
