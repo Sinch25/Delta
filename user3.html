@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Mediplus</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- icofont CSS -->
+    <link rel="stylesheet" href="css/icofont.css">
+    <!-- Slicknav -->
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Medipro CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Same styling as before */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a76d1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .output {
+            background-color: #e6f7ff;
+            padding: 10px;
+            border: 1px solid #b3e0ff;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .output-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .output-table th,
+        .output-table td {
+            border: 1px solid #b3e0ff;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .output-table th {
+            background-color: #d1ecf1;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fffbcc;
+            padding: 20px;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Animation for pop-up */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Domestic User - Expired Tablets</h1>
+
+        <label for="tabletName">Tablet Name:</label>
+        <input type="text" id="tabletName" placeholder="Enter tablet name">
+        <div class="error-message" id="tabletNameError"></div>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" placeholder="Enter quantity">
+        <div class="error-message" id="quantityError"></div>
+
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="date" id="expiryDate">
+        <div class="error-message" id="expiryDateError"></div>
+
+        <button onclick="calculatePrice()">Calculate Price</button>
+
+        <div class="output" id="priceOutput"></div>
+
+        <!-- Tablet Type Section -->
+        <h2>Tablet Type</h2>
+        <button onclick="showTabletDescription('prescription')">Prescription Tablets</button>
+        <button onclick="showTabletDescription('otc')">Over-the-Counter Tablets</button>
+
+        <!-- Pickup and Drop-off Section -->
+        <h2>Choose Pickup/Drop-off Option</h2>
+        <button onclick="selectDropOff()">Drop-off at Our Facility</button>
+        <button onclick="selectPickup()">Pickup from Your Location</button>
+
+        <!-- Pickup Address Section -->
+        <div id="pickupSection" class="address-section">
+            <label for="pickupAddress">Enter Pickup Address:</label>
+            <input type="text" id="pickupAddress" placeholder="Enter your pickup address">
+            <button onclick="savePickupAddress()">Save Pickup Address</button>
+        </div>
+
+        <!-- Payment Methods Section -->
+        <div id="paymentMethods">
+            <h2>Payment Methods</h2>
+            <label for="cashOnDelivery">Cash on Delivery</label>
+            <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash" onclick="showPaymentForm('none')">
+            <label for="upi">UPI</label>
+            <input type="radio" id="upi" name="paymentMethod" value="upi" onclick="showPaymentForm('upi')">
+            <div id="upiOptions" style="display:none;">
+                <label for="upiId">Enter UPI ID (PhonePay, Google Pay, Paytm):</label>
+                <input type="text" id="upiId" placeholder="Enter UPI ID">
+            </div>
+
+        </div>
+
+        <button onclick="proceedToNextPage()">Proceed</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <div>
+        <button>
+            <a href="index.html">Back To Home</a></button>
+        <button>
+            <a href="useroptions.html">Back To Mode of Action</a></button>
+    </div>
+    <br>
+
+    <script>
+        function calculatePrice() {
+            const tabletName = document.getElementById('tabletName').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const expiryDate = document.getElementById('expiryDate').value;
+            const pricePerTablet = 10;
+
+            let hasError = false;
+
+            if (!tabletName) {
+                document.getElementById('tabletNameError').innerText = 'Tablet name is required.';
+                hasError = true;
+            }
+
+            if (quantity <= 0 || isNaN(quantity)) {
+                document.getElementById('quantityError').innerText = 'Please enter a valid quantity.';
+                hasError = true;
+            }
+
+            if (!expiryDate) {
+                document.getElementById('expiryDateError').innerText = 'Expiry date is required.';
+                hasError = true;
+            }
+
+            if (!hasError) {
+                const totalPrice = pricePerTablet * quantity;
+                document.getElementById('priceOutput').innerHTML = `
+                    <table class="output-table">
+                        <tr><th>Tablet Name</th><th>Quantity</th><th>Price Per Tablet (₹)</th><th>Total Price (₹)</th></tr>
+                        <tr><td>${tabletName}</td><td>${quantity}</td><td>${pricePerTablet}</td><td>${totalPrice}</td></tr>
+                    </table>`;
+            }
+        }
+
+        function showTabletDescription(type) {
+            let description = '';
+            if (type === 'prescription') {
+                description = 'Prescription tablets are medications that require a doctor\'s prescription. These are typically regulated and must be prescribed by a healthcare professional.';
+            } else if (type === 'otc') {
+                description = 'Over-the-counter (OTC) tablets are available without a prescription and are generally considered safe for self-treatment of common ailments.';
+            }
+            showPopup(description);
+        }
+
+        function selectDropOff() {
+            document.getElementById('pickupSection').style.display = 'none';
+            showPopup("Thank you for choosing our facility. We will send the address to you soon.");
+        }
+
+        function selectPickup() {
+            document.getElementById('pickupSection').style.display = 'block';
+        }
+
+        function savePickupAddress() {
+            const pickupAddress = document.getElementById('pickupAddress').value;
+            if (pickupAddress) {
+                showPopup("Thank you for taking this step to improve environmental sustainability!");
+            } else {
+                showPopup("Please provide a pickup address.");
+            }
+        }
+
+        function proceedToNextPage() {
+            // Show gratitude pop-up
+            const gratitudeMessage = `Thank you for helping us decompose expired tablets. Your contribution is crucial for improving environmental sustainability. 
+            Decomposing expired tablets helps reduce waste and prevents harmful chemicals from affecting the environment. You're making a difference!`;
+            showPopup(gratitudeMessage);
+        }
+
+        function showPopup(message) {
+            document.getElementById('popupMessage').innerHTML = message;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

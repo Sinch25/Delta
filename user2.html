@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Mediplus</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- icofont CSS -->
+    <link rel="stylesheet" href="css/icofont.css">
+    <!-- Slicknav -->
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Medipro CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a76d1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .output {
+            background-color: #e6f7ff;
+            padding: 10px;
+            border: 1px solid #b3e0ff;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .output-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .output-table th,
+        .output-table td {
+            border: 1px solid #b3e0ff;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .output-table th {
+            background-color: #d1ecf1;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fffbcc;
+            padding: 20px;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Domestic User - Tablet Re-sale</h1>
+
+        <label for="tabletName">Tablet Name:</label>
+        <input type="text" id="tabletName" placeholder="Enter tablet name">
+        <div class="error-message" id="tabletNameError"></div>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" placeholder="Enter quantity">
+        <div class="error-message" id="quantityError"></div>
+
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="date" id="expiryDate">
+        <div class="error-message" id="expiryDateError"></div>
+
+        <button onclick="calculatePrice()">Calculate Price</button>
+
+        <div class="output" id="priceOutput"></div>
+
+        <label for="address">Delivery Address:</label>
+        <input type="text" id="address" placeholder="Enter your address">
+        <div class="error-message" id="addressError"></div>
+
+        <!-- Payment Methods Section -->
+        <div id="paymentMethods">
+            <h2>Payment Methods</h2>
+
+            <label for="cashOnDelivery">Cash on Delivery</label>
+            <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash" onclick="showPaymentForm('none')">
+
+            <label for="upi">UPI</label>
+            <input type="radio" id="upi" name="paymentMethod" value="upi" onclick="showPaymentForm('upi')">
+
+            <div id="upiOptions" style="display:none;">
+                <label for="upiId">Enter UPI ID (PhonePay, Google Pay, Paytm):</label>
+                <input type="text" id="upiId" placeholder="Enter UPI ID">
+            </div>
+        </div>
+
+        <button onclick="saveAddress()">Save Address</button>
+
+        <button id="placeOrderButton" style="display:none;" onclick="placeOrder()">Place Order</button>
+        <button onclick="showPriceList()">Show Price List Based on Expiry Date</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">Close</button>
+    </div><br>
+
+    <div>
+        <button>
+            <a href="index.html">Back To Home</a></button>
+        <button>
+            <a href="useroptions.html">Back To Mode of Action</a></button>
+    </div><br>
+
+    <script>
+        let orderHistory = [];
+
+        function clearErrors() {
+            document.getElementById('tabletNameError').innerText = '';
+            document.getElementById('quantityError').innerText = '';
+            document.getElementById('addressError').innerText = '';
+            document.getElementById('expiryDateError').innerText = '';
+        }
+
+        function calculatePrice() {
+            clearErrors();
+
+            const tabletName = document.getElementById('tabletName').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const expiryDate = document.getElementById('expiryDate').value;
+            const pricePerTablet = 10;
+
+            let hasError = false;
+
+            if (!tabletName) {
+                document.getElementById('tabletNameError').innerText = 'Tablet name is required.';
+                hasError = true;
+            }
+
+            if (quantity <= 0 || isNaN(quantity)) {
+                document.getElementById('quantityError').innerText = 'Please enter a valid quantity.';
+                hasError = true;
+            }
+
+            if (!expiryDate) {
+                document.getElementById('expiryDateError').innerText = 'Expiry date is required.';
+                hasError = true;
+            }
+
+            if (!hasError) {
+                const totalPrice = pricePerTablet * quantity;
+                document.getElementById('priceOutput').innerHTML = `
+                    <table class="output-table">
+                        <tr><th>Tablet Name</th><th>Quantity</th><th>Price Per Tablet (₹)</th><th>Total Price (₹)</th></tr>
+                        <tr><td>${tabletName}</td><td>${quantity}</td><td>${pricePerTablet}</td><td>${totalPrice}</td></tr>
+                    </table>`;
+            }
+        }
+
+        function saveAddress() {
+            clearErrors();
+
+            const tabletName = document.getElementById('tabletName').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const address = document.getElementById('address').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+
+            let hasError = false;
+
+            if (!tabletName) {
+                document.getElementById('tabletNameError').innerText = 'Tablet name is required.';
+                hasError = true;
+            }
+
+            if (quantity <= 0 || isNaN(quantity)) {
+                document.getElementById('quantityError').innerText = 'Please enter a valid quantity.';
+                hasError = true;
+            }
+
+            if (!address) {
+                document.getElementById('addressError').innerText = 'Delivery address is required.';
+                hasError = true;
+            }
+
+            if (!expiryDate) {
+                document.getElementById('expiryDateError').innerText = 'Expiry date is required.';
+                hasError = true;
+            }
+
+            if (!hasError) {
+                orderHistory.push({ tabletName, quantity, address, expiryDate });
+                showPopup(`Address saved successfully! < br > Tablet: ${tabletName} < br > Quantity: ${quantity} < br > Delivery Address: ${address} < br > Expiry Date: ${expiryDate}`);
+                document.getElementById('placeOrderButton').style.display = 'block';
+            }
+        }
+
+        function showPriceList() {
+            const expiryDate = document.getElementById('expiryDate').value;
+
+            if (!expiryDate) {
+                showPopup('Please select an expiry date.');
+                return;
+            }
+
+            // Sample price list based on expiry date (for illustration)
+            const priceList = [
+                { date: '2025-02-01', price: 8 },
+                { date: '2025-03-01', price: 10 },
+                { date: '2025-04-01', price: 12 }
+            ];
+
+            const filteredPrices = priceList.filter(item => item.date >= expiryDate);
+
+            if (filteredPrices.length === 0) {
+                showPopup('No price list available for the selected expiry date.');
+                return;
+            }
+
+            let priceTable = '<table class="output-table"><tr><th>Expiry Date</th><th>Price (₹)</th></tr>';
+            filteredPrices.forEach(item => {
+                priceTable += <tr><td>${item.date}</td><td>${item.price}</td></tr>;
+            });
+            priceTable += '</table>';
+
+            showPopup(priceTable);
+        }
+
+        function showPaymentForm(paymentMethod) {
+            if (paymentMethod === 'none') {
+                document.getElementById('upiOptions').style.display = 'none';
+            } else if (paymentMethod === 'upi') {
+                document.getElementById('upiOptions').style.display = 'block';
+            }
+        }
+
+        function placeOrder() {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+
+            if (!paymentMethod) {
+                showPopup('Please select a payment method.');
+                return;
+            }
+
+            let paymentMessage = '';
+            if (paymentMethod.value === 'upi') {
+                const upiId = document.getElementById('upiId').value;
+                if (!upiId) {
+                    showPopup('Please enter a valid UPI ID.');
+                    return;
+                }
+                paymentMessage = `Payment via UPI ID: ${upiId}`;
+            } else if (paymentMethod.value === 'cash') {
+                paymentMessage = 'Cash on Delivery selected.';
+            }
+
+            showPopup(`Order placed successfully! < br > ${paymentMessage}`);
+
+            // Show thank you popup after order is placed
+            setTimeout(() => {
+                showPopup("Thank you for re-selling the tablets, which helps those who need them urgently!");
+            }, 2000);  // Delay to allow payment confirmation popup to disappear
+
+            // Redirect to thank you page after showing the message
+            setTimeout(() => {
+                window.location.href = 'thankyou.html';  // Redirect to "Thank you" page
+            }, 4000);  // Wait 4 seconds in total
+        }
+
+        function showPopup(message) {
+            document.getElementById('popupMessage').innerHTML = message;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
