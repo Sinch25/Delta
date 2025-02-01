@@ -2686,9 +2686,9 @@ body {
   Start Faq CSS
 =======================*/
 .faq-container {
-  max-width: 800px;
+  max-width: 400px;
   margin: 0 auto;
-  padding: 50px;
+  padding: 20px;
 }
 
 .faq-item {
@@ -2697,7 +2697,8 @@ body {
 
 .faq-question {
   font-weight: bold;
-  padding: 10px;
+  margin-right: 150px;
+  margin-left: 150px;
   cursor: pointer;
   position: relative; /* For the plus/minus icon */
   background-color: #1a76d1;
@@ -2724,6 +2725,8 @@ body {
   padding: 0 10px;
   max-height: 0; /* Initially hidden */
   overflow: hidden;
+  margin-right: 150px;
+  margin-left: 150px;
   transition: max-height 0.3s ease-in-out; /* Smooth transition */
 }
 
