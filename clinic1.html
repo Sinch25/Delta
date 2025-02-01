@@ -175,7 +175,7 @@
             <input type="number" id="quantity" placeholder="Enter quantity">
             <div class="error-message" id="quantityError"></div>
 
-            <button onclick="calculatePrice()">Calculate Price</button>
+            <button onclick="calculatePrice(event)">Calculate Price</button>
 
             <div class="output" id="priceOutput"></div>
 
@@ -183,33 +183,31 @@
             <input type="text" id="address" placeholder="Enter your address">
             <div class="error-message" id="addressError"></div><br>
 
-            <!-- Payment Methods Section -->
             <div id="paymentMethods">
                 <h2>Payment Methods</h2>
-
                 <label for="cashOnDelivery">Cash on Delivery</label>
                 <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash"
                     onclick="showPaymentForm('none')">
-
                 <label for="upi">UPI</label>
                 <input type="radio" id="upi" name="paymentMethod" value="upi" onclick="showPaymentForm('upi')">
-
                 <div id="upiOptions" style="display:none;">
                     <label for="upiId">Enter UPI ID (PhonePay, Google Pay, Paytm):</label>
                     <input type="text" id="upiId" placeholder="Enter UPI ID">
                 </div>
             </div>
 
-            <button onclick="saveAddress()">Save Address</button>
+            <button onclick="saveAddress(event)">Save Address</button>
 
-            <button id="placeOrderButton" style="display:none;" onclick="placeOrder()">Place Order</button>
+            <button id="placeOrderButton" style="display:none;" onclick="placeOrder(event)">Place Order</button>
+        </form>
     </div>
 
     <div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
         <p id="popupMessage"></p>
         <button onclick="closePopup()">Close</button>
-    </div><br>
+    </div>
+
     <script>
         let orderHistory = [];
 
@@ -219,7 +217,8 @@
             document.getElementById('addressError').innerText = '';
         }
 
-        function calculatePrice() {
+        function calculatePrice(event) {
+            event.preventDefault();
             clearErrors();
 
             const tabletName = document.getElementById('tabletName').value;
@@ -248,7 +247,8 @@
             }
         }
 
-        function saveAddress() {
+        function saveAddress(event) {
+            event.preventDefault();
             clearErrors();
 
             const tabletName = document.getElementById('tabletName').value;
@@ -274,7 +274,7 @@
 
             if (!hasError) {
                 orderHistory.push({ tabletName, quantity, address });
-                showPopup(`Address saved successfully! < br > Tablet: ${tabletName} < br > Quantity: ${quantity} < br > Delivery Address: ${address}`);
+                showPopup(`Address saved successfully! <br> Tablet: ${tabletName} <br> Quantity: ${quantity} <br> Delivery Address: ${address}`);
                 document.getElementById('placeOrderButton').style.display = 'block';
             }
         }
@@ -287,7 +287,8 @@
             }
         }
 
-        function placeOrder() {
+        function placeOrder(event) {
+            event.preventDefault();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
 
             if (!paymentMethod) {
@@ -307,7 +308,7 @@
                 paymentMessage = 'Cash on Delivery selected.';
             }
 
-            showPopup(`Order placed successfully! < br > ${paymentMessage}`);
+            showPopup(`Order placed successfully! <br> ${paymentMessage}`);
             setTimeout(() => {
                 window.location.href = 'thankyou.html';  // Redirect to "Thank you" page
             }, 2000);

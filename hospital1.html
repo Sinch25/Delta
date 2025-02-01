@@ -9,40 +9,25 @@
     <meta name='copyright' content=''>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Title -->
     <title>Mediplus</title>
-
-    <!-- Favicon -->
     <link rel="icon" href="img/favicon.png">
 
-    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
         rel="stylesheet">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Nice Select CSS -->
     <link rel="stylesheet" href="css/nice-select.css">
-    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <!-- icofont CSS -->
     <link rel="stylesheet" href="css/icofont.css">
-    <!-- Slicknav -->
     <link rel="stylesheet" href="css/slicknav.min.css">
-    <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="css/owl-carousel.css">
-    <!-- Datepicker CSS -->
     <link rel="stylesheet" href="css/datepicker.css">
-    <!-- Animate CSS -->
     <link rel="stylesheet" href="css/animate.min.css">
-    <!-- Magnific Popup CSS -->
     <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <!-- Medipro CSS -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -157,7 +142,7 @@
     <div class="container">
         <h1>Multi-Speciality Hospitals - Tablet Purchase</h1>
 
-        <form action="submit_waste_request.php" method="POST">
+        <form id="tabletPurchaseForm">
             <label for="clinic-name">Hospital Name</label>
             <input type="text" id="clinic-name" name="clinic_name" required>
 
@@ -175,7 +160,7 @@
             <input type="number" id="quantity" placeholder="Enter quantity">
             <div class="error-message" id="quantityError"></div>
 
-            <button onclick="calculatePrice()">Calculate Price</button>
+            <button type="button" onclick="calculatePrice(event)">Calculate Price</button>
 
             <div class="output" id="priceOutput"></div>
 
@@ -183,7 +168,6 @@
             <input type="text" id="address" placeholder="Enter your address">
             <div class="error-message" id="addressError"></div><br>
 
-            <!-- Payment Methods Section -->
             <div id="paymentMethods">
                 <h2>Payment Methods</h2>
 
@@ -200,9 +184,11 @@
                 </div>
             </div>
 
-            <button onclick="saveAddress()">Save Address</button>
+            <button type="button" onclick="saveAddress(event)">Save Address</button>
 
-            <button id="placeOrderButton" style="display:none;" onclick="placeOrder()">Place Order</button>
+            <button type="button" id="placeOrderButton" style="display:none;" onclick="placeOrder(event)">Place
+                Order</button>
+        </form>
     </div>
 
     <div class="overlay" id="overlay"></div>
@@ -220,7 +206,8 @@
             document.getElementById('addressError').innerText = '';
         }
 
-        function calculatePrice() {
+        function calculatePrice(event) {
+            event.preventDefault(); // Prevent form submission on button click
             clearErrors();
 
             const tabletName = document.getElementById('tabletName').value;
@@ -249,7 +236,8 @@
             }
         }
 
-        function saveAddress() {
+        function saveAddress(event) {
+            event.preventDefault(); // Prevent form submission on button click
             clearErrors();
 
             const tabletName = document.getElementById('tabletName').value;
@@ -275,7 +263,7 @@
 
             if (!hasError) {
                 orderHistory.push({ tabletName, quantity, address });
-                showPopup(`Address saved successfully! < br > Tablet: ${tabletName} < br > Quantity: ${quantity} < br > Delivery Address: ${address}`);
+                showPopup(`Address saved successfully! <br> Tablet: ${tabletName} <br> Quantity: ${quantity} <br> Delivery Address: ${address}`);
                 document.getElementById('placeOrderButton').style.display = 'block';
             }
         }
@@ -288,7 +276,8 @@
             }
         }
 
-        function placeOrder() {
+        function placeOrder(event) {
+            event.preventDefault(); // Prevent form submission on button click
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
 
             if (!paymentMethod) {
@@ -308,7 +297,7 @@
                 paymentMessage = 'Cash on Delivery selected.';
             }
 
-            showPopup(`Order placed successfully! < br > ${paymentMessage}`);
+            showPopup(`Order placed successfully! <br> ${paymentMessage}`);
             setTimeout(() => {
                 window.location.href = 'thankyou.html';  // Redirect to "Thank you" page
             }, 2000);

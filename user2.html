@@ -245,10 +245,10 @@
             if (!hasError) {
                 const totalPrice = pricePerTablet * quantity;
                 document.getElementById('priceOutput').innerHTML = `
-                    <table class="output-table">
-                        <tr><th>Tablet Name</th><th>Quantity</th><th>Price Per Tablet (₹)</th><th>Total Price (₹)</th></tr>
-                        <tr><td>${tabletName}</td><td>${quantity}</td><td>${pricePerTablet}</td><td>${totalPrice}</td></tr>
-                    </table>`;
+            <table class="output-table">
+                <tr><th>Tablet Name</th><th>Quantity</th><th>Price Per Tablet (₹)</th><th>Total Price (₹)</th></tr>
+                <tr><td>${tabletName}</td><td>${quantity}</td><td>${pricePerTablet}</td><td>${totalPrice}</td></tr>
+            </table>`;
             }
         }
 
@@ -313,7 +313,7 @@
 
             let priceTable = '<table class="output-table"><tr><th>Expiry Date</th><th>Price (₹)</th></tr>';
             filteredPrices.forEach(item => {
-                priceTable += <tr><td>${item.date}</td><td>${item.price}</td></tr>;
+                priceTable += `<tr><td>${item.date}</td><td>${item.price}</td></tr>`;
             });
             priceTable += '</table>';
 
@@ -336,7 +336,8 @@
                 return;
             }
 
-            let paymentMessage = '';
+            let paymentMessage = ''; // Initialize the variable
+
             if (paymentMethod.value === 'upi') {
                 const upiId = document.getElementById('upiId').value;
                 if (!upiId) {
@@ -371,7 +372,6 @@
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
         }
-
 
     </script>
 </body>

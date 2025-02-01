@@ -3,48 +3,25 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="Site keywords here">
-    <meta name="description" content="">
-    <meta name='copyright' content=''>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Title -->
-    <title>Mediplus</title>
-
-    <!-- Favicon -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Disposal Request</title>
     <link rel="icon" href="img/favicon.png">
-
-    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
         rel="stylesheet">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Nice Select CSS -->
     <link rel="stylesheet" href="css/nice-select.css">
-    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <!-- icofont CSS -->
     <link rel="stylesheet" href="css/icofont.css">
-    <!-- Slicknav -->
     <link rel="stylesheet" href="css/slicknav.min.css">
-    <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="css/owl-carousel.css">
-    <!-- Datepicker CSS -->
     <link rel="stylesheet" href="css/datepicker.css">
-    <!-- Animate CSS -->
     <link rel="stylesheet" href="css/animate.min.css">
-    <!-- Magnific Popup CSS -->
     <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <!-- Medipro CSS -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <style>
-        /* Same styling as before */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f8ff;
@@ -74,11 +51,14 @@
 
         input[type="text"],
         input[type="number"],
-        input[type="date"] {
+        input[type="tel"],
+        select,
+        textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-bottom: 15px;
         }
 
         button {
@@ -105,21 +85,9 @@
             margin-top: 10px;
         }
 
-        .output-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .output-table th,
-        .output-table td {
-            border: 1px solid #b3e0ff;
-            padding: 8px;
-            text-align: center;
-        }
-
-        .output-table th {
-            background-color: #d1ecf1;
+        .error-message {
+            color: red;
+            font-size: 0.9em;
         }
 
         .popup {
@@ -134,7 +102,6 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            animation: fadeIn 2s ease-in-out;
         }
 
         .overlay {
@@ -147,81 +114,42 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
-
-        .error-message {
-            color: red;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-        /* Animation for pop-up */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Domestic User - Expired Tablets</h1>
+        <h1>Waste Disposal Request</h1>
 
-        <label for="tabletName">Tablet Name:</label>
-        <input type="text" id="tabletName" placeholder="Enter tablet name">
-        <div class="error-message" id="tabletNameError"></div>
+        <form id="wasteForm">
+            <label for="contact-person">Contact Person</label>
+            <input type="text" id="contact-person" name="contact_person" required>
 
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" placeholder="Enter quantity">
-        <div class="error-message" id="quantityError"></div>
+            <label for="contact-phone">Contact Phone</label>
+            <input type="tel" id="contact-phone" name="contact_phone" required>
 
-        <label for="expiryDate">Expiry Date:</label>
-        <input type="date" id="expiryDate">
-        <div class="error-message" id="expiryDateError"></div>
+            <label for="waste-type">Type of Waste</label>
+            <select id="waste-type" name="waste_type" required multiple>
+                <option value="Infectious Waste">Infectious Waste</option>
+                <option value="Sharps">Sharps</option>
+                <option value="Pharmaceutical Waste">Pharmaceutical Waste</option>
+                <option value="Chemical Waste">Chemical Waste</option>
+                <option value="Non-Hazardous Waste">Non-Hazardous Waste</option>
+                <option value="Radioactive Waste">Radioactive Waste</option>
+                <option value="Anatomical Waste">Anatomical Waste</option>
+                <option value="Pathological Waste">Pathological Waste</option>
+                <option value="Offensive Waste">Offensive Waste</option>
+                <option value="Electrical Waste">Electrical Waste</option>
+            </select>
 
-        <button onclick="calculatePrice()">Calculate Price</button>
+            <label for="waste-quantity">Quantity of Waste (kg)</label>
+            <input type="number" id="waste-quantity" name="waste_quantity" required>
 
-        <div class="output" id="priceOutput"></div><br>
+            <label for="additional-info">Additional Information</label>
+            <textarea id="additional-info" name="additional_info" rows="4"></textarea>
 
-        <!-- Tablet Type Section -->
-        <h2>Tablet Type</h2>
-        <button onclick="showTabletDescription('prescription')">Prescription Tablets</button>
-        <button onclick="showTabletDescription('otc')">Over-the-Counter Tablets</button>
-
-        <br><br>
-        <!-- Pickup and Drop-off Section -->
-        <h2>Choose Pickup/Drop-off Option</h2>
-        <button onclick="selectDropOff()">Drop-off at Our Facility</button>
-        <button onclick="selectPickup()">Pickup from Your Location</button>
-
-        <!-- Pickup Address Section -->
-        <div id="pickupSection" class="address-section">
-            <label for="pickupAddress">Enter Pickup Address:</label>
-            <input type="text" id="pickupAddress" placeholder="Enter your pickup address">
-            <button onclick="savePickupAddress()">Save Pickup Address</button>
-        </div>
-
-        <br><br>
-        <!-- Payment Methods Section -->
-        <div id="paymentMethods">
-            <h2>Payment Methods</h2>
-            <label for="cashOnDelivery">Cash on Delivery</label>
-            <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash" onclick="showPaymentForm('none')">
-            <label for="upi">UPI</label>
-            <input type="radio" id="upi" name="paymentMethod" value="upi" onclick="showPaymentForm('upi')">
-            <div id="upiOptions" style="display:none;">
-                <label for="upiId">Enter UPI ID (PhonePay, Google Pay, Paytm):</label>
-                <input type="text" id="upiId" placeholder="Enter UPI ID">
-            </div>
-
-        </div>
-        <button onclick="proceedToNextPage()">Proceed</button>
+            <button type="submit" onclick="submitWasteRequest(event)">Request Waste Disposal</button>
+        </form>
     </div>
 
     <div class="overlay" id="overlay"></div>
@@ -231,72 +159,8 @@
     </div>
 
     <script>
-        function calculatePrice() {
-            const tabletName = document.getElementById('tabletName').value;
-            const quantity = parseInt(document.getElementById('quantity').value);
-            const expiryDate = document.getElementById('expiryDate').value;
-            const pricePerTablet = 10;
-
-            let hasError = false;
-
-            if (!tabletName) {
-                document.getElementById('tabletNameError').innerText = 'Tablet name is required.';
-                hasError = true;
-            }
-
-            if (quantity <= 0 || isNaN(quantity)) {
-                document.getElementById('quantityError').innerText = 'Please enter a valid quantity.';
-                hasError = true;
-            }
-
-            if (!expiryDate) {
-                document.getElementById('expiryDateError').innerText = 'Expiry date is required.';
-                hasError = true;
-            }
-
-            if (!hasError) {
-                const totalPrice = pricePerTablet * quantity;
-                document.getElementById('priceOutput').innerHTML = `
-                    <table class="output-table">
-                        <tr><th>Tablet Name</th><th>Quantity</th><th>Price Per Tablet (₹)</th><th>Total Price (₹)</th></tr>
-                        <tr><td>${tabletName}</td><td>${quantity}</td><td>${pricePerTablet}</td><td>${totalPrice}</td></tr>
-                    </table>`;
-            }
-        }
-
-        function showTabletDescription(type) {
-            let description = '';
-            if (type === 'prescription') {
-                description = 'Prescription tablets are medications that require a doctor\'s prescription. These are typically regulated and must be prescribed by a healthcare professional.';
-            } else if (type === 'otc') {
-                description = 'Over-the-counter (OTC) tablets are available without a prescription and are generally considered safe for self-treatment of common ailments.';
-            }
-            showPopup(description);
-        }
-
-        function selectDropOff() {
-            document.getElementById('pickupSection').style.display = 'none';
-            showPopup("Thank you for choosing our facility. We will send the address to you soon.");
-        }
-
-        function selectPickup() {
-            document.getElementById('pickupSection').style.display = 'block';
-        }
-
-        function savePickupAddress() {
-            const pickupAddress = document.getElementById('pickupAddress').value;
-            if (pickupAddress) {
-                showPopup("Thank you for taking this step to improve environmental sustainability!");
-            } else {
-                showPopup("Please provide a pickup address.");
-            }
-        }
-
-        function proceedToNextPage() {
-            // Show gratitude pop-up
-            const gratitudeMessage = `Thank you for helping us decompose expired tablets. Your contribution is crucial for improving environmental sustainability. 
-            Decomposing expired tablets helps reduce waste and prevents harmful chemicals from affecting the environment. You're making a difference!`;
-            showPopup(gratitudeMessage);
+        function clearErrors() {
+            document.getElementById('popupMessage').innerText = '';
         }
 
         function showPopup(message) {
@@ -308,6 +172,45 @@
         function closePopup() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
+        }
+
+        function submitWasteRequest(event) {
+            event.preventDefault();  // Prevent form from submitting normally
+            clearErrors();
+
+            // Get form values
+            const contactPerson = document.getElementById('contact-person').value;
+            const contactPhone = document.getElementById('contact-phone').value;
+            const wasteType = document.getElementById('waste-type').value;
+            const wasteQuantity = parseInt(document.getElementById('waste-quantity').value);
+            const additionalInfo = document.getElementById('additional-info').value;
+
+            // Validation
+            if (!contactPerson || !contactPhone || !wasteType || wasteQuantity <= 0 || isNaN(wasteQuantity)) {
+                showPopup('Please fill in all required fields correctly.');
+                return;
+            }
+
+            // If everything is valid, simulate the waste request submission and show confirmation popup
+            const message = `
+                <strong>Request Submitted!</strong><br>
+                Contact Person: ${contactPerson}<br>
+                Contact Phone: ${contactPhone}<br>
+                Waste Type: ${wasteType}<br>
+                Waste Quantity: ${wasteQuantity} kg<br>
+                Additional Info: ${additionalInfo || 'None'}
+            `;
+
+            showPopup(message);
+            // Show thank you popup after order is placed
+            setTimeout(() => {
+                showPopup("Thank you for re-selling the tablets, which helps those who need them urgently!");
+            }, 2000);  // Delay to allow payment confirmation popup to disappear
+
+            // Redirect to thank you page after showing the message
+            setTimeout(() => {
+                window.location.href = 'thankyou.html';  // Redirect to "Thank you" page
+            }, 4000);  // Wait 4 seconds in total
         }
     </script>
 </body>
