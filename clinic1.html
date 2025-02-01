@@ -2,216 +2,87 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinic Waste Management</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Mediplus</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- icofont CSS -->
+    <link rel="stylesheet" href="css/icofont.css">
+    <!-- Slicknav -->
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Medipro CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
             margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            overflow-x: hidden;
-        }
-
-        header {
-            background-color: #0066cc;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            opacity: 0;
-            animation: slideIn 1s ease-out forwards 0.3s;
+            padding: 20px;
         }
 
         .container {
-            width: 80%;
+            max-width: 600px;
             margin: 0 auto;
+            background: #fff;
             padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            color: #0066cc;
-            font-size: 2em;
-            margin-bottom: 20px;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-        }
-
-        .card {
-            background-color: #f1f1f1;
-            width: calc(33% - 20px);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
-            border: 2px solid #0066cc;
-            transform: scale(1);
-            opacity: 0;
-            animation: fadeInCard 1s ease-out forwards;
-            cursor: pointer;
-            position: relative;
+        h1 {
             text-align: center;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Scroll-triggered card animation delays */
-        .card:nth-child(1) {
-            animation-delay: 0.4s;
-        }
-
-        .card:nth-child(2) {
-            animation-delay: 0.6s;
-        }
-
-        .card:nth-child(3) {
-            animation-delay: 0.8s;
-        }
-
-        .card:nth-child(4) {
-            animation-delay: 1s;
-        }
-
-        .card:nth-child(5) {
-            animation-delay: 1.2s;
-        }
-
-        .card:nth-child(6) {
-            animation-delay: 1.4s;
-        }
-
-        .card:nth-child(7) {
-            animation-delay: 1.6s;
-        }
-
-        .card:nth-child(8) {
-            animation-delay: 1.8s;
-        }
-
-        .card:nth-child(9) {
-            animation-delay: 2s;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 255, 0.3);
-        }
-
-        .card h3 {
-            margin-top: 10px;
-            font-size: 1.3em;
-        }
-
-        .card p {
-            font-size: 0.9em;
             color: #333;
         }
 
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
         }
 
-        @keyframes fadeInCard {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .scroll-trigger {
-            opacity: 0;
-            transform: translateY(100px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-
-        .scroll-trigger.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .waste-request-form input,
-        .waste-request-form textarea {
+        input[type="text"],
+        input[type="number"] {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-        .waste-request-form button {
-            background-color: #0066cc;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .waste-request-form button:hover {
-            background-color: #004d99;
-        }
-
-        @keyframes slideIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Disposal Guidelines Section */
-        .disposal-guidelines {
-            margin-top: 40px;
-            background-color: #e6f7ff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 255, 0.1);
-        }
-
-        .disposal-guidelines h3 {
-            font-size: 1.6em;
-            color: #0066cc;
-        }
-
-        .disposal-guidelines ul {
-            margin-top: 10px;
-        }
-
-        .disposal-guidelines ul li {
-            margin-bottom: 10px;
-            font-size: 1em;
-            color: #333;
-        }
-
-        .back-button {
+        button {
             width: 100%;
             padding: 10px;
             background-color: #1a76d1;
-            text-decoration: none;
             color: white;
             border: none;
             border-radius: 5px;
@@ -220,278 +91,244 @@
             transition: background-color 0.3s;
         }
 
-        .back-button:hover {
+        button:hover {
             background-color: #218838;
+        }
+
+        .output {
+            background-color: #e6f7ff;
+            padding: 10px;
+            border: 1px solid #b3e0ff;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .output-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .output-table th,
+        .output-table td {
+            border: 1px solid #b3e0ff;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .output-table th {
+            background-color: #d1ecf1;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fffbcc;
+            padding: 20px;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>Clinic Waste Management</h1>
-        <p>Proper handling and disposal of medical waste is essential for a safe and healthy environment.</p>
-    </header>
-
     <div class="container">
-        <h2>Types of Clinic Waste</h2>
-        <div class="card-container">
-            <div class="card scroll-trigger">
-                <h3>Infectious Waste</h3>
-                <p>Includes items contaminated with bodily fluids or blood.</p>
-            </div>
-            <div class="card scroll-trigger">
-                <h3>Sharps</h3>
-                <p>Needles, scalpels, and other objects capable of puncturing the skin.</p>
-            </div>
-            <div class="card scroll-trigger">
-                <h3>Chemical Waste</h3>
-                <p>Waste products like disinfectants and solvents.</p>
-            </div>
-            <div class="card scroll-trigger">
-                <h3>Anatomical Waste</h3>
-                <p>Human tissues, organs, and body parts from surgeries or autopsies.</p>
-            </div>
-            <div class="card scroll-trigger">
-                <h3>Offensive Waste</h3>
-                <p>Waste that is not hazardous but unpleasant to handle, such as human waste or certain materials.</p>
-            </div>
-            <div class="card scroll-trigger">
-                <h3>Electrical Waste</h3>
-                <p>Outdated or broken medical equipment that needs to be disposed of properly.</p>
-            </div>
-        </div>
+        <h1>Clinics - Tablet Purchase</h1>
 
-        <!-- Disposal Guidelines Section -->
-        <div class="disposal-guidelines">
-            <h3>Disposal Guidelines</h3>
-            <p>It is important to follow proper guidelines for the disposal of medical waste to ensure safety for
-                healthcare professionals and the environment:</p>
-            <ul>
-                <li><strong>Infectious Waste:</strong> Should be disposed of in red biohazard bags and treated with
-                    disinfectants before disposal.</li>
-                <li><strong>Sharps:</strong> Must be placed in puncture-proof containers and safely disposed of through
-                    authorized services.</li>
-                <li><strong>Chemical Waste:</strong> Needs to be stored in clearly labeled containers and should be
-                    disposed of at certified hazardous waste facilities.</li>
-                <li><strong>Anatomical Waste:</strong> Should be incinerated or disposed of according to specific
-                    protocols set by local health authorities.</li>
-                <li><strong>Offensive Waste:</strong> Can generally be disposed of in regular waste containers but
-                    should be treated to avoid unpleasant odors.</li>
-                <li><strong>Electrical Waste:</strong> Should be handled as e-waste and disposed of through authorized
-                    e-waste recycling programs.</li>
-            </ul>
-        </div>
+        <form action="submit_waste_request.php" method="POST">
+            <label for="clinic-name">Clinic Name</label>
+            <input type="text" id="clinic-name" name="clinic_name" required>
 
-        <div class="waste-request-form">
-            <h1>Clinics - Tablet Purchase</h1>
-            <form action="submit_waste_request.php" method="POST">
-                <label for="clinic-name">Clinic Name</label>
-                <input type="text" id="clinic-name" name="clinic_name" required>
+            <label for="contact-person">Contact Person</label>
+            <input type="text" id="contact-person" name="contact_person" required>
 
-                <label for="contact-person">Contact Person</label>
-                <input type="text" id="contact-person" name="contact_person" required>
+            <label for="contact-phone">Contact Phone</label>
+            <input type="tel" id="contact-phone" name="contact_phone" required>
 
-                <label for="contact-phone">Contact Phone</label>
-                <input type="tel" id="contact-phone" name="contact_phone" required>
+            <label for="tabletName">Tablet Name:</label>
+            <input type="text" id="tabletName" placeholder="Enter tablet name">
+            <div class="error-message" id="tabletNameError"></div>
 
-                <label for="waste-type">Type of Waste</label>
-                <select id="waste-type" name="waste_type" required>
-                    <option value="Infectious Waste">Infectious Waste</option>
-                    <option value="Sharps">Sharps</option>
-                    <option value="Pharmaceutical Waste">Pharmaceutical Waste</option>
-                    <option value="Chemical Waste">Chemical Waste</option>
-                    <option value="Non-Hazardous Waste">Non-Hazardous Waste</option>
-                    <option value="Radioactive Waste">Radioactive Waste</option>
-                    <option value="Anatomical Waste">Anatomical Waste</option>
-                    <option value="Pathological Waste">Pathological Waste</option>
-                    <option value="Offensive Waste">Offensive Waste</option>
-                    <option value="Electrical Waste">Electrical Waste</option>
-                </select>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" placeholder="Enter quantity">
+            <div class="error-message" id="quantityError"></div>
 
-                <label for="additional-info">Additional Information</label>
-                <textarea id="additional-info" name="additional_info" rows="4"></textarea>
-                <label for="tabletName">Tablet Name:</label>
-                <input type="text" id="tabletName" placeholder="Enter tablet name">
-                <div class="error-message" id="tabletNameError"></div>
+            <button onclick="calculatePrice()">Calculate Price</button>
 
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" placeholder="Enter quantity">
-                <div class="error-message" id="quantityError"></div>
+            <div class="output" id="priceOutput"></div>
 
-                <button onclick="calculatePrice()">Calculate Price</button>
+            <label for="address">Delivery Address:</label>
+            <input type="text" id="address" placeholder="Enter your address">
+            <div class="error-message" id="addressError"></div><br>
 
-                <div class="output" id="priceOutput"></div><br>
+            <!-- Payment Methods Section -->
+            <div id="paymentMethods">
+                <h2>Payment Methods</h2>
 
-                <label for="address">Delivery Address:</label>
-                <input type="text" id="address" placeholder="Enter your address">
-                <div class="error-message" id="addressError"></div>
+                <label for="cashOnDelivery">Cash on Delivery</label>
+                <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash"
+                    onclick="showPaymentForm('none')">
 
-                <!-- Payment Methods Section -->
-                <div id="paymentMethods">
-                    <h2>Payment Methods</h2>
+                <label for="upi">UPI</label>
+                <input type="radio" id="upi" name="paymentMethod" value="upi" onclick="showPaymentForm('upi')">
 
-                    <label for="cashOnDelivery">Cash on Delivery</label>
-                    <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash"
-                        onclick="showPaymentForm('none')">
-
-                    <label for="upi">UPI</label>
-                    <input type="radio" id="upi" name="paymentMethod" value="upi" onclick="showPaymentForm('upi')">
-
-                    <div id="upiOptions" style="display:none;">
-                        <label for="upiId">Enter UPI ID (PhonePay, Google Pay, Paytm):</label>
-                        <input type="text" id="upiId" placeholder="Enter UPI ID">
-                    </div>
+                <div id="upiOptions" style="display:none;">
+                    <label for="upiId">Enter UPI ID (PhonePay, Google Pay, Paytm):</label>
+                    <input type="text" id="upiId" placeholder="Enter UPI ID">
                 </div>
+            </div>
 
-                <button onclick="saveAddress()">Save Address</button>
+            <button onclick="saveAddress()">Save Address</button>
 
-                <button id="placeOrderButton" style="display:none;" onclick="placeOrder()">Place Order</button>
-        </div>
+            <button id="placeOrderButton" style="display:none;" onclick="placeOrder()">Place Order</button>
+    </div>
 
-        <div class="overlay" id="overlay"></div>
-        <div class="popup" id="popup">
-            <p id="popupMessage"></p>
-            <button onclick="closePopup()">Close</button>
-        </div>
-        <button class="back-button">
-            <a href="index.html">Back To Home</a></button>
-        <button class="back-button">
-            <a href="useroptions.html">Back To Mode of Action</a></button>
-        <br>
-        <script>
-            // Scroll-triggered animations for the cards
-            const cards = document.querySelectorAll('.scroll-trigger');
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">Close</button>
+    </div><br>
+    <button>
+        <a href="index.html">Back To Home</a></button>
+    <button>
+        <a href="useroptions.html">Back To Mode of Action</a></button>
+    <br><br>
+    <script>
+        let orderHistory = [];
 
-            const checkVisibility = () => {
-                const triggerBottom = window.innerHeight / 1.2;
+        function clearErrors() {
+            document.getElementById('tabletNameError').innerText = '';
+            document.getElementById('quantityError').innerText = '';
+            document.getElementById('addressError').innerText = '';
+        }
 
-                cards.forEach(card => {
-                    const cardTop = card.getBoundingClientRect().top;
-                    if (cardTop < triggerBottom) {
-                        card.classList.add('visible');
-                    } else {
-                        card.classList.remove('visible');
-                    }
-                });
-            };
+        function calculatePrice() {
+            clearErrors();
 
-            window.addEventListener('scroll', checkVisibility);
-            checkVisibility();  // Initial check to handle already visible cards
+            const tabletName = document.getElementById('tabletName').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const pricePerTablet = 10;
 
-            let orderHistory = [];
+            let hasError = false;
 
-            function clearErrors() {
-                document.getElementById('tabletNameError').innerText = '';
-                document.getElementById('quantityError').innerText = '';
-                document.getElementById('addressError').innerText = '';
+            if (!tabletName) {
+                document.getElementById('tabletNameError').innerText = 'Tablet name is required.';
+                hasError = true;
             }
 
-            function calculatePrice() {
-                clearErrors();
+            if (quantity <= 0 || isNaN(quantity)) {
+                document.getElementById('quantityError').innerText = 'Please enter a valid quantity.';
+                hasError = true;
+            }
 
-                const tabletName = document.getElementById('tabletName').value;
-                const quantity = parseInt(document.getElementById('quantity').value);
-                const pricePerTablet = 10;
-
-                let hasError = false;
-
-                if (!tabletName) {
-                    document.getElementById('tabletNameError').innerText = 'Tablet name is required.';
-                    hasError = true;
-                }
-
-                if (quantity <= 0 || isNaN(quantity)) {
-                    document.getElementById('quantityError').innerText = 'Please enter a valid quantity.';
-                    hasError = true;
-                }
-
-                if (!hasError) {
-                    const totalPrice = pricePerTablet * quantity;
-                    document.getElementById('priceOutput').innerHTML = `
+            if (!hasError) {
+                const totalPrice = pricePerTablet * quantity;
+                document.getElementById('priceOutput').innerHTML = `
                     <table class="output-table">
                         <tr><th>Tablet Name</th><th>Quantity</th><th>Price Per Tablet (₹)</th><th>Total Price (₹)</th></tr>
                         <tr><td>${tabletName}</td><td>${quantity}</td><td>${pricePerTablet}</td><td>${totalPrice}</td></tr>
                     </table>`;
-                }
+            }
+        }
+
+        function saveAddress() {
+            clearErrors();
+
+            const tabletName = document.getElementById('tabletName').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const address = document.getElementById('address').value;
+
+            let hasError = false;
+
+            if (!tabletName) {
+                document.getElementById('tabletNameError').innerText = 'Tablet name is required.';
+                hasError = true;
             }
 
-            function saveAddress() {
-                clearErrors();
-
-                const tabletName = document.getElementById('tabletName').value;
-                const quantity = parseInt(document.getElementById('quantity').value);
-                const address = document.getElementById('address').value;
-
-                let hasError = false;
-
-                if (!tabletName) {
-                    document.getElementById('tabletNameError').innerText = 'Tablet name is required.';
-                    hasError = true;
-                }
-
-                if (quantity <= 0 || isNaN(quantity)) {
-                    document.getElementById('quantityError').innerText = 'Please enter a valid quantity.';
-                    hasError = true;
-                }
-
-                if (!address) {
-                    document.getElementById('addressError').innerText = 'Delivery address is required.';
-                    hasError = true;
-                }
-
-                if (!hasError) {
-                    orderHistory.push({ tabletName, quantity, address });
-                    showPopup(`Address saved successfully! < br > Tablet: ${tabletName} < br > Quantity: ${quantity} < br > Delivery Address: ${address}`);
-                    document.getElementById('placeOrderButton').style.display = 'block';
-                }
+            if (quantity <= 0 || isNaN(quantity)) {
+                document.getElementById('quantityError').innerText = 'Please enter a valid quantity.';
+                hasError = true;
             }
 
-            function showPaymentForm(paymentMethod) {
-                if (paymentMethod === 'none') {
-                    document.getElementById('upiOptions').style.display = 'none';
-                } else if (paymentMethod === 'upi') {
-                    document.getElementById('upiOptions').style.display = 'block';
-                }
+            if (!address) {
+                document.getElementById('addressError').innerText = 'Delivery address is required.';
+                hasError = true;
             }
 
-            function placeOrder() {
-                const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if (!hasError) {
+                orderHistory.push({ tabletName, quantity, address });
+                showPopup(`Address saved successfully! < br > Tablet: ${tabletName} < br > Quantity: ${quantity} < br > Delivery Address: ${address}`);
+                document.getElementById('placeOrderButton').style.display = 'block';
+            }
+        }
 
-                if (!paymentMethod) {
-                    showPopup('Please select a payment method.');
+        function showPaymentForm(paymentMethod) {
+            if (paymentMethod === 'none') {
+                document.getElementById('upiOptions').style.display = 'none';
+            } else if (paymentMethod === 'upi') {
+                document.getElementById('upiOptions').style.display = 'block';
+            }
+        }
+
+        function placeOrder() {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+
+            if (!paymentMethod) {
+                showPopup('Please select a payment method.');
+                return;
+            }
+
+            let paymentMessage = '';
+            if (paymentMethod.value === 'upi') {
+                const upiId = document.getElementById('upiId').value;
+                if (!upiId) {
+                    showPopup('Please enter a valid UPI ID.');
                     return;
                 }
-
-                let paymentMessage = '';
-                if (paymentMethod.value === 'upi') {
-                    const upiId = document.getElementById('upiId').value;
-                    if (!upiId) {
-                        showPopup('Please enter a valid UPI ID.');
-                        return;
-                    }
-                    paymentMessage = `Payment via UPI ID: ${upiId}`;
-                } else if (paymentMethod.value === 'cash') {
-                    paymentMessage = 'Cash on Delivery selected.';
-                }
-
-                showPopup(`Order placed successfully! < br > ${paymentMessage}`);
-                setTimeout(() => {
-                    window.location.href = 'thankyou.html';  // Redirect to "Thank you" page
-                }, 2000);
+                paymentMessage = `Payment via UPI ID: ${upiId}`;
+            } else if (paymentMethod.value === 'cash') {
+                paymentMessage = 'Cash on Delivery selected.';
             }
 
-            function showPopup(message) {
-                document.getElementById('popupMessage').innerHTML = message;
-                document.getElementById('overlay').style.display = 'block';
-                document.getElementById('popup').style.display = 'block';
-            }
+            showPopup(`Order placed successfully! < br > ${paymentMessage}`);
+            setTimeout(() => {
+                window.location.href = 'thankyou.html';  // Redirect to "Thank you" page
+            }, 2000);
+        }
 
-            function closePopup() {
-                document.getElementById('overlay').style.display = 'none';
-                document.getElementById('popup').style.display = 'none';
-            }
+        function showPopup(message) {
+            document.getElementById('popupMessage').innerHTML = message;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
 
-        </script>
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>
