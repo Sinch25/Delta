@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Page</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid black;
+            margin-bottom: 10px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+            position: relative; /* For the plus/minus icon */
+            background-color: #1a76d1;
+            color: aliceblue;
+        }
+
+        .faq-question::after { /* Plus icon (initially) */
+            content: "+";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+        }
+
+        .faq-question.active::after { /* Minus icon (when active) */
+            content: "-";
+        }
+
+
+        .faq-answer {
+            padding: 0 10px;
+            max-height: 0; /* Initially hidden */
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out; /* Smooth transition */
+        }
+
+        .faq-answer.active {
+            max-height: 500px; /* Adjust as needed */
+            padding: 10px; /* Add some padding when visible */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="faq-container">
+        <h1>Frequently Asked Questions</h1>
+
+        <div class="faq-item">
+            <div class="faq-question">What is your return policy?</div>
+            <div class="faq-answer">
+                <p>Our return policy allows for returns within 30 days of purchase.  Items must be in original condition.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I track my order?</div>
+            <div class="faq-answer">
+                <p>You can track your order by logging into your account and viewing the order details.  A tracking number will be provided once your order ships.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What payment methods do you accept?</div>
+            <div class="faq-answer">
+                <p>We accept Visa, Mastercard, American Express, and Discover.</p>
+            </div>
+        </div>
+
+        </div>
+
+    <script>
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                question.classList.toggle('active'); // Toggle the active class on the question
+                answer.classList.toggle('active');   // Toggle the active class on the answer
+            });
+        });
+    </script>
+
+</body>
+</html>
