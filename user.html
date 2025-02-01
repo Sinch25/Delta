@@ -42,182 +42,59 @@
 
     <!-- Medipro CSS -->
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="user.css">
     <link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
 <body>
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader">
-            <div class="loader-outter"></div>
-            <div class="loader-inner"></div>
+    <div class="container">
+        <h1>Domestic User - Tablet Purchase</h1>
 
-            <div class="indicator">
-                <svg width="16px" height="12px">
-                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                </svg>
+        <label for="tabletName">Tablet Name:</label>
+        <input type="text" id="tabletName" placeholder="Enter tablet name">
+        <div class="error-message" id="tabletNameError"></div>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" placeholder="Enter quantity">
+        <div class="error-message" id="quantityError"></div>
+
+        <button onclick="calculatePrice()">Calculate Price</button>
+
+        <div class="output" id="priceOutput"></div>
+
+        <label for="address">Delivery Address:</label>
+        <input type="text" id="address" placeholder="Enter your address">
+        <div class="error-message" id="addressError"></div>
+
+        <!-- Payment Methods Section -->
+        <div id="paymentMethods">
+            <h2>Payment Methods</h2>
+
+            <label for="cashOnDelivery">Cash on Delivery</label>
+            <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash" onclick="showPaymentForm('none')">
+
+            <label for="upi">UPI</label>
+            <input type="radio" id="upi" name="paymentMethod" value="upi" onclick="showPaymentForm('upi')">
+
+            <div id="upiOptions" style="display:none;">
+                <label for="upiId">Enter UPI ID (PhonePay, Google Pay, Paytm):</label>
+                <input type="text" id="upiId" placeholder="Enter UPI ID">
             </div>
         </div>
+
+        <button onclick="saveAddress()">Save Address</button>
+
+        <button id="placeOrderButton" style="display:none;" onclick="placeOrder()">Place Order</button>
     </div>
-    <!-- End Preloader -->
 
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
 
-    <!-- Header Area -->
-    <header class="header">
-        <!-- Topbar -->
-        <div class="topbar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-5 col-12">
-                        <!-- Contact -->
-                        <ul class="top-link">
-                            <li><a href="#">Empowering Healthcare, Eliminating Waste – Buy, Sell, and
-                                    Dispose Responsibly!</a></li>
-                        </ul>
-                        <!-- End Contact -->
-                    </div>
-                    <div class="col-lg-6 col-md-7 col-12">
-                        <!-- Top Contact -->
-                        <ul class="top-contact">
-                            <li><i class="fa fa-phone"></i>+880 1234 56789</li>
-                            <li><i class="fa fa-envelope"></i><a
-                                    href="mailto:support@yourmail.com">support@yourmail.com</a></li>
-                        </ul>
-                        <!-- End Top Contact -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Topbar -->
-        <!-- Header Inner -->
-        <div class="header-inner">
-            <div class="container">
-                <div class="inner">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12">
-                            <!-- Start Logo -->
-                            <div class="logo">
-                                <a href="index.html"><img src="img/logo.png" alt="#"></a>
-                            </div>
-                            <!-- End Logo -->
-                            <!-- Mobile Nav -->
-                            <div class="mobile-nav"></div>
-                            <!-- End Mobile Nav -->
-                        </div>
-                        <div class="col-lg-7 col-md-9 col-12">
-                            <!-- Main Menu -->
-                            <div class="main-menu">
-                                <nav class="navigation">
-                                    <ul class="nav menu">
-                                        <li class="active"><a href="#">Home <i class="icofont-rounded-down"></i></a>
-                                            <ul class="dropdown">
-                                                <li><a href="index.html">Home Page 1</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Blogs <i class="icofont-rounded-down"></i></a>
-                                            <ul class="dropdown">
-                                                <li><a href="blog-single.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">FAQs</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <!--/ End Main Menu -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ End Header Inner -->
-    </header>
-    <!-- End Header Area -->
-
-
-    <!-- Footer Area -->
-    <footer id="footer" class="footer ">
-        <!-- Footer Top -->
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="single-footer">
-                            <h2>Socials</h2>
-                            <p>Want to stay in the loop? Follow us for exclusive content and health insights. Click the
-                                links below to connect!.</p>
-                            <!-- Social -->
-                            <ul class="social">
-                                <li><a href="#"><i class="icofont-facebook"></i></a></li>
-                                <li><a href="#"><i class="icofont-google-plus"></i></a></li>
-                                <li><a href="#"><i class="icofont-twitter"></i></a></li>
-                                <li><a href="#"><i class="icofont-vimeo"></i></a></li>
-                                <li><a href="#"><i class="icofont-pinterest"></i></a></li>
-                            </ul>
-                            <!-- End Social -->
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="single-footer f-link">
-                            <h2>Quick Links</h2>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Blogs</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact
-                                                Us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="single-footer">
-                            <h2>Open Hours</h2>
-                            <ul class="time-sidual">
-                                <li class="day">Monday - Friday : <span>8.00-20.00</span></li>
-                                <li class="day">Saturday : <span> 9.00-18.00</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <!--/ End Footer Top -->
-        <!-- Copyright -->
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <div class="copyright-content">
-                            <p>© Copyright 2025 | All Rights Reserved by <a href="https://www.wpthemesgrid.com"
-                                    target="_blank">Mediplus.com</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ End Copyright -->
-    </footer>
-    <!--/ End Footer Area -->
 
     <!-- jquery Min JS -->
     <script src="js/jquery.min.js"></script>
@@ -265,10 +142,9 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="js/main.js"></script>
-    <!-- Login JS -->
-    <script src="js/login.js"></script>
-    <!-- Register JS -->
-    <script src="js/register.js"></script>
+    <!-- User JS -->
+    <script src="js/user.js"></script>
+
 </body>
 
 </html>
